@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Box,
-} from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
 import SearchableBlogList from '../components/SearchableBlogList';
 
 interface BlogPost {
