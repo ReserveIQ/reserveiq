@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/reserveiq/static/js/main.a6fda999.js",
+    "main.js": "/reserveiq/static/js/main.1d321e83.js",
     "index.html": "/reserveiq/index.html",
-    "main.a6fda999.js.map": "/reserveiq/static/js/main.a6fda999.js.map"
+    "main.1d321e83.js.map": "/reserveiq/static/js/main.1d321e83.js.map"
   },
   "entrypoints": [
-    "static/js/main.a6fda999.js"
+    "static/js/main.1d321e83.js"
   ]
 }
