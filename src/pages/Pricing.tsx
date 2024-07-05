@@ -14,9 +14,11 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Box,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import StarIcon from '@mui/icons-material/Star';
 
 interface PricingTier {
   title: string;
@@ -28,18 +30,24 @@ interface PricingTier {
 
 const pricingTiers: PricingTier[] = [
   {
-    title: 'Basic',
-    price: '$29/month',
-    features: ['Smart Reservations', 'Customer Profiles', 'Email Support'],
+    title: 'Starter',
+    price: '$49/month',
+    features: [
+      'Smart Reservations',
+      'Basic Customer Profiles',
+      'Email Support',
+      'Limited AI Insights',
+    ],
     buttonText: 'Start Free Trial',
   },
   {
-    title: 'Premium',
-    price: '$79/month',
+    title: 'Growth',
+    price: '$99/month',
     features: [
-      'All Basic features',
+      'All Starter features',
+      'Advanced Customer Profiling',
       'Employee Scheduling',
-      'Analytics Dashboard',
+      'Full AI-Powered Analytics',
       'Priority Support',
     ],
     buttonText: 'Start Free Trial',
@@ -49,9 +57,10 @@ const pricingTiers: PricingTier[] = [
     title: 'Enterprise',
     price: 'Custom',
     features: [
-      'All Premium features',
-      'Custom Integrations',
+      'All Growth features',
+      'Custom AI Models',
       'Dedicated Account Manager',
+      'API Access for Custom Integrations',
       '24/7 Phone Support',
     ],
     buttonText: 'Contact Sales',
@@ -74,23 +83,31 @@ const PricingCard: React.FC<PricingTier> = ({
       subheader={isRecommended ? 'Recommended' : null}
       titleTypographyProps={{ align: 'center' }}
       subheaderTypographyProps={{ align: 'center' }}
+      action={isRecommended ? <StarIcon color="secondary" /> : null}
       sx={{
         backgroundColor: isRecommended ? 'primary.main' : 'grey.200',
         color: isRecommended ? 'white' : 'inherit',
       }}
     />
     <CardContent sx={{ flexGrow: 1 }}>
-      <Typography
-        component="h2"
-        variant="h3"
-        align="center"
-        color="text.primary"
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'baseline',
+          mb: 2,
+        }}
       >
-        {price}
-      </Typography>
+        <Typography component="h2" variant="h3" color="text.primary">
+          {price}
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          /month
+        </Typography>
+      </Box>
       <List>
         {features.map((feature, index) => (
-          <ListItem key={index}>
+          <ListItem key={index} sx={{ py: 1, px: 0 }}>
             <ListItemIcon>
               <CheckIcon color="primary" />
             </ListItemIcon>
@@ -99,13 +116,15 @@ const PricingCard: React.FC<PricingTier> = ({
         ))}
       </List>
     </CardContent>
-    <Button
-      fullWidth
-      variant={isRecommended ? 'contained' : 'outlined'}
-      color="primary"
-    >
-      {buttonText}
-    </Button>
+    <Box sx={{ p: 2 }}>
+      <Button
+        fullWidth
+        variant={isRecommended ? 'contained' : 'outlined'}
+        color="primary"
+      >
+        {buttonText}
+      </Button>
+    </Box>
   </Card>
 );
 
@@ -113,10 +132,10 @@ const Pricing: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h2" component="h1" align="center" gutterBottom>
-        Pricing Plans
+        AI-Powered Pricing for Smarter Business
       </Typography>
       <Typography variant="h5" align="center" color="text.secondary" paragraph>
-        Choose the plan that fits your business needs
+        Choose the plan that fits your business needs and unlock the power of AI
       </Typography>
 
       <Grid container spacing={4} alignItems="flex-end" sx={{ mb: 8 }}>
@@ -138,6 +157,19 @@ const Pricing: React.FC = () => {
       </Typography>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>What's included in the AI-powered features?</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Our AI-powered features include predictive booking, customer
+            behavior analysis, personalized marketing recommendations, and
+            intelligent staff scheduling. The extent of these features varies by
+            plan.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Can I change my plan later?</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -153,19 +185,20 @@ const Pricing: React.FC = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            We offer a 14-day free trial for our Basic and Premium plans. No
+            We offer a 14-day free trial for our Starter and Growth plans. No
             credit card is required to start your trial.
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>What payment methods do you accept?</Typography>
+          <Typography>What kind of support do you offer?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            We accept all major credit cards, including Visa, MasterCard, and
-            American Express. We also support PayPal for select countries.
+            All plans include email support. Our Growth plan includes priority
+            support, while Enterprise customers get 24/7 phone support and a
+            dedicated account manager.
           </Typography>
         </AccordionDetails>
       </Accordion>

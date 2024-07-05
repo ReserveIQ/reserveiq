@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Container,
   Typography,
   Grid,
   Card,
   CardContent,
-  CardMedia,
-  CardActionArea,
-  TextField,
-  Button,
-  Pagination,
   Box,
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchableBlogList from '../components/SearchableBlogList';
 
 interface BlogPost {
   id: number;
@@ -47,97 +42,16 @@ const mockPosts: BlogPost[] = [
   // Add more mock posts as needed
 ];
 
-const BlogPostCard: React.FC<BlogPost> = ({
-  title,
-  excerpt,
-  image,
-  category,
-}) => (
-  <Card>
-    <CardActionArea>
-      <CardMedia component="img" height="140" image={image} alt={title} />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {excerpt}
-        </Typography>
-        <Typography
-          variant="caption"
-          color="primary"
-          sx={{ mt: 1, display: 'block' }}
-        >
-          {category}
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-  </Card>
-);
-
 const Blog: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-
-  const filteredPosts = mockPosts.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setCurrentPage(value);
-  };
-
   return (
     <Container maxWidth="lg">
       <Typography variant="h2" component="h1" align="center" gutterBottom>
         ReserveIQ Blog
       </Typography>
 
-      <Box sx={{ display: 'flex', mb: 4 }}>
-        <TextField
-          fullWidth
-          variant="outlined"
-          placeholder="Search posts..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <Button variant="contained" sx={{ ml: 1 }}>
-          <SearchIcon />
-        </Button>
-      </Box>
-
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <Grid container spacing={3}>
-            {currentPosts.map((post) => (
-              <Grid item xs={12} sm={6} key={post.id}>
-                <BlogPostCard {...post} />
-              </Grid>
-            ))}
-          </Grid>
-          <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-            <Pagination
-              count={Math.ceil(filteredPosts.length / postsPerPage)}
-              page={currentPage}
-              onChange={handlePageChange}
-              color="primary"
-            />
-          </Box>
+          <SearchableBlogList posts={mockPosts} />
         </Grid>
         <Grid item xs={12} md={4}>
           <Card>
@@ -145,7 +59,10 @@ const Blog: React.FC = () => {
               <Typography variant="h6" gutterBottom>
                 Categories
               </Typography>
-              {/* Add category list here */}
+              <Typography variant="body2">Customer Service</Typography>
+              <Typography variant="body2">Technology</Typography>
+              <Typography variant="body2">Management</Typography>
+              {/* Add more categories as needed */}
             </CardContent>
           </Card>
           <Card sx={{ mt: 2 }}>
@@ -153,7 +70,16 @@ const Blog: React.FC = () => {
               <Typography variant="h6" gutterBottom>
                 Popular Posts
               </Typography>
-              {/* Add popular posts list here */}
+              <Typography variant="body2">
+                5 Ways to Improve Customer Experience
+              </Typography>
+              <Typography variant="body2">
+                The Future of Reservation Systems
+              </Typography>
+              <Typography variant="body2">
+                Effective Staff Management Tips
+              </Typography>
+              {/* Add more popular posts as needed */}
             </CardContent>
           </Card>
         </Grid>
