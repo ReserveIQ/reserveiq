@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.js": "/reserveiq/static/js/main.1d321e83.js",
+    "main.js": "/reserveiq/static/js/main.626e7f33.js",
+    "static/media/modern-restaurant-interior.jpg": "/reserveiq/static/media/modern-restaurant-interior.4c6f8c8711a2eb4b3546.jpg",
+    "static/media/denver-skyline-silhouette.jpg": "/reserveiq/static/media/denver-skyline-silhouette.9825d72b449e8398a65a.jpg",
     "index.html": "/reserveiq/index.html",
-    "main.1d321e83.js.map": "/reserveiq/static/js/main.1d321e83.js.map"
+    "main.626e7f33.js.map": "/reserveiq/static/js/main.626e7f33.js.map"
   },
   "entrypoints": [
-    "static/js/main.1d321e83.js"
+    "static/js/main.626e7f33.js"
   ]
 }
