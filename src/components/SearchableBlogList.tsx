@@ -1,5 +1,12 @@
 import React, { useState, ChangeEvent } from 'react';
-import { TextField, Button, Grid, Box, Pagination } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Grid,
+  Box,
+  Pagination,
+  InputAdornment,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import BlogPostCard from './BlogPostCard';
 import usePagination from '../hooks/usePagination';
@@ -37,15 +44,23 @@ const SearchableBlogList: React.FC<SearchableBlogListProps> = ({ posts }) => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', mb: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
         <TextField
           fullWidth
           variant="outlined"
           placeholder="Search posts..."
           value={searchTerm}
           onChange={handleSearchChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ flexGrow: 1, maxWidth: '800px' }}
         />
-        <Button variant="contained" sx={{ ml: 1 }}>
+        <Button variant="contained" sx={{ ml: 2 }}>
           <SearchIcon />
         </Button>
       </Box>
