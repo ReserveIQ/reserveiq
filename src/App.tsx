@@ -21,7 +21,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <Box display="flex" flexDirection="column" minHeight="100vh">
           <Header />
           <Container component="main" sx={{ flexGrow: 1, py: 3 }}>
