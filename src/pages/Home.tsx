@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Typography,
-  Button,
-  Box,
-  Grid,
-  Paper,
-  Card,
-  CardContent,
-  Avatar,
-} from '@mui/material';
+import { Container, Typography, Button, Box, Grid, Paper, Card, CardContent, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -36,15 +26,9 @@ const Home: React.FC = () => {
           Streamline Your Business with ReserveIQ
         </Typography>
         <Typography variant="h5" color="textSecondary" paragraph>
-          Intelligent reservation and customer management for customer-centric
-          businesses
+          Intelligent reservation and customer management for customer-centric businesses
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          endIcon={<ArrowForwardIcon />}
-        >
+        <Button variant="contained" color="primary" size="large" endIcon={<ArrowForwardIcon />}>
           Get Started
         </Button>
       </Hero>
@@ -52,32 +36,20 @@ const Home: React.FC = () => {
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <FeatureItem elevation={2}>
-            <Typography variant="h6" gutterBottom>
-              Smart Reservations
-            </Typography>
-            <Typography>
-              Effortlessly manage bookings and optimize capacity
-            </Typography>
+            <Typography variant="h6" gutterBottom>Smart Reservations</Typography>
+            <Typography>Effortlessly manage bookings and optimize capacity</Typography>
           </FeatureItem>
         </Grid>
         <Grid item xs={12} md={4}>
           <FeatureItem elevation={2}>
-            <Typography variant="h6" gutterBottom>
-              Customer Insights
-            </Typography>
-            <Typography>
-              Gain valuable data to personalize experiences
-            </Typography>
+            <Typography variant="h6" gutterBottom>Customer Insights</Typography>
+            <Typography>Gain valuable data to personalize experiences</Typography>
           </FeatureItem>
         </Grid>
         <Grid item xs={12} md={4}>
           <FeatureItem elevation={2}>
-            <Typography variant="h6" gutterBottom>
-              Staff Management
-            </Typography>
-            <Typography>
-              Streamline scheduling and improve efficiency
-            </Typography>
+            <Typography variant="h6" gutterBottom>Staff Management</Typography>
+            <Typography>Streamline scheduling and improve efficiency</Typography>
           </FeatureItem>
         </Grid>
       </Grid>
@@ -90,9 +62,7 @@ const Home: React.FC = () => {
             </Grid>
             <Grid item xs>
               <Typography variant="body1">
-                "ReserveIQ has transformed how we manage our restaurant. Our
-                bookings are up, and our customers love the personalized
-                service!"
+                "ReserveIQ has transformed how we manage our restaurant. Our bookings are up, and our customers love the personalized service!"
               </Typography>
               <Typography variant="subtitle2" color="textSecondary">
                 - John Doe, Owner of Gourmet Delight
@@ -106,17 +76,12 @@ const Home: React.FC = () => {
         <Button variant="outlined" color="primary" href="/features">
           Explore Features
         </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          href="/pricing"
-          sx={{ ml: 2 }}
-        >
+        <Button variant="outlined" color="primary" href="/pricing" sx={{ ml: 2 }}>
           View Pricing
         </Button>
       </Box>
     </Container>
   );
-};
+}
 
 export default Home;
