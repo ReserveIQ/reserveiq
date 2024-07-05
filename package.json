@@ -24,7 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build && cp _headers build/_headers",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
