@@ -1,7 +1,8 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { CssBaseline, Container, Box } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // Import the theme
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,11 +12,6 @@ import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import Testimonials from './pages/Testimonials';
-
-// Create a theme instance.
-const theme = createTheme({
-  // You can customize the theme here
-});
 
 const App: React.FC = () => {
   return (
