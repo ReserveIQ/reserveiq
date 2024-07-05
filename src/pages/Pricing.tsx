@@ -5,116 +5,97 @@ import {
   Grid,
   Card,
   CardContent,
-  CardHeader,
   Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Box,
 } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import StarIcon from '@mui/icons-material/Star';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface PricingTier {
   title: string;
   price: string;
-  features: string[];
+  description: string;
   buttonText: string;
   isRecommended?: boolean;
 }
 
 const pricingTiers: PricingTier[] = [
   {
-    title: 'Starter',
-    price: '$49/month',
-    features: [
-      'Smart Reservations',
-      'Basic Customer Profiles',
-      'Email Support',
-      'Limited AI Insights',
-    ],
-    buttonText: 'Start Free Trial',
+    title: 'Basic',
+    price: '$9',
+    description: 'For Individuals & Small Teams',
+    buttonText: 'Start Basic Plan',
   },
   {
-    title: 'Growth',
-    price: '$99/month',
-    features: [
-      'All Starter features',
-      'Advanced Customer Profiling',
-      'Employee Scheduling',
-      'Full AI-Powered Analytics',
-      'Priority Support',
-    ],
-    buttonText: 'Start Free Trial',
+    title: 'AI-Powered',
+    price: '$19',
+    description: 'Ideal for Service Businesses',
+    buttonText: 'Try Pro Now',
     isRecommended: true,
   },
   {
-    title: 'Enterprise',
+    title: 'Business',
     price: 'Custom',
-    features: [
-      'All Growth features',
-      'Custom AI Models',
-      'Dedicated Account Manager',
-      'API Access for Custom Integrations',
-      '24/7 Phone Support',
-    ],
-    buttonText: 'Contact Sales',
+    description: 'For Advanced Business Needs',
+    buttonText: 'Start Business Plan',
   },
 ];
 
 const PricingCard: React.FC<PricingTier> = ({
   title,
   price,
-  features,
+  description,
   buttonText,
   isRecommended,
 }) => (
   <Card
     raised={isRecommended}
-    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+    sx={{
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: 'background.paper',
+      position: 'relative',
+    }}
   >
-    <CardHeader
-      title={title}
-      subheader={isRecommended ? 'Recommended' : null}
-      titleTypographyProps={{ align: 'center' }}
-      subheaderTypographyProps={{ align: 'center' }}
-      action={isRecommended ? <StarIcon color="secondary" /> : null}
-      sx={{
-        backgroundColor: isRecommended ? 'primary.main' : 'grey.200',
-        color: isRecommended ? 'white' : 'inherit',
-      }}
-    />
-    <CardContent sx={{ flexGrow: 1 }}>
+    {isRecommended && (
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'baseline',
-          mb: 2,
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          backgroundColor: 'primary.main',
+          color: 'white',
+          padding: '4px 8px',
+          borderBottomLeftRadius: 4,
         }}
       >
-        <Typography component="h2" variant="h3" color="text.primary">
-          {price}
-        </Typography>
-        <Typography variant="h6" color="text.secondary">
-          /month
-        </Typography>
+        Top Choice
       </Box>
-      <List>
-        {features.map((feature, index) => (
-          <ListItem key={index} sx={{ py: 1, px: 0 }}>
-            <ListItemIcon>
-              <CheckIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary={feature} />
-          </ListItem>
-        ))}
-      </List>
+    )}
+    <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        {title}
+      </Typography>
+      <Typography variant="h3" component="div" gutterBottom>
+        {price}
+        <Typography variant="subtitle1" component="span">
+          /mo
+        </Typography>
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {description}
+      </Typography>
     </CardContent>
     <Box sx={{ p: 2 }}>
       <Button
@@ -128,80 +109,150 @@ const PricingCard: React.FC<PricingTier> = ({
   </Card>
 );
 
+const featureComparison = [
+  { feature: 'Process Analysis', basic: true, pro: true, business: true },
+  { feature: 'Task Management', basic: true, pro: true, business: true },
+  { feature: 'Time Tracking', basic: true, pro: true, business: true },
+  { feature: 'AI Reservation System', basic: true, pro: true, business: true },
+  { feature: 'Custom Reservation', basic: true, pro: true, business: true },
+  { feature: 'Email Notifications', basic: true, pro: true, business: true },
+  { feature: 'Process Automation', basic: false, pro: true, business: true },
+  { feature: 'Task Scheduling', basic: false, pro: true, business: true },
+  { feature: 'Time Management', basic: false, pro: true, business: true },
+  {
+    feature: 'Real-time Availability',
+    basic: false,
+    pro: true,
+    business: true,
+  },
+  { feature: 'Automated Booking', basic: false, pro: true, business: true },
+  { feature: 'AI Integration', basic: false, pro: false, business: true },
+  { feature: 'Task Assignment', basic: false, pro: false, business: true },
+  { feature: 'Time Optimization', basic: false, pro: false, business: true },
+  {
+    feature: 'AI Analytics Dashboard',
+    basic: false,
+    pro: false,
+    business: true,
+  },
+  {
+    feature: 'Service Level Agreement',
+    basic: false,
+    pro: false,
+    business: true,
+  },
+];
+
 const Pricing: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h2" component="h1" align="center" gutterBottom>
-        AI-Powered Pricing for Smarter Business
+        Pricing
       </Typography>
       <Typography variant="h5" align="center" color="text.secondary" paragraph>
-        Choose the plan that fits your business needs and unlock the power of AI
+        Transparent Pricing for AI Reservation System
       </Typography>
 
       <Grid container spacing={4} alignItems="flex-end" sx={{ mb: 8 }}>
         {pricingTiers.map((tier) => (
-          <Grid
-            item
-            key={tier.title}
-            xs={12}
-            sm={tier.title === 'Enterprise' ? 12 : 6}
-            md={4}
-          >
+          <Grid item key={tier.title} xs={12} sm={4}>
             <PricingCard {...tier} />
           </Grid>
         ))}
       </Grid>
 
       <Typography variant="h4" gutterBottom>
+        Feature Comparison
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Feature</TableCell>
+              <TableCell align="center">Basic</TableCell>
+              <TableCell align="center">Pro</TableCell>
+              <TableCell align="center">Business</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {featureComparison.map((row) => (
+              <TableRow key={row.feature}>
+                <TableCell component="th" scope="row">
+                  {row.feature}
+                </TableCell>
+                <TableCell align="center">
+                  {row.basic && <CheckIcon />}
+                </TableCell>
+                <TableCell align="center">{row.pro && <CheckIcon />}</TableCell>
+                <TableCell align="center">
+                  {row.business && <CheckIcon />}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <Box sx={{ my: 8, textAlign: 'center' }}>
+        <img
+          src="/path-to-analytics-image.png"
+          alt="Analytics Dashboard"
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+      </Box>
+
+      <Typography variant="h4" gutterBottom>
         Frequently Asked Questions
       </Typography>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>What's included in the AI-powered features?</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Our AI-powered features include predictive booking, customer
-            behavior analysis, personalized marketing recommendations, and
-            intelligent staff scheduling. The extent of these features varies by
-            plan.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Can I change my plan later?</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Yes, you can upgrade or downgrade your plan at any time. Changes
-            will be reflected in your next billing cycle.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Is there a free trial available?</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            We offer a 14-day free trial for our Starter and Growth plans. No
-            credit card is required to start your trial.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>What kind of support do you offer?</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            All plans include email support. Our Growth plan includes priority
-            support, while Enterprise customers get 24/7 phone support and a
-            dedicated account manager.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+      {[
+        'How does AI reservation work?',
+        'What are the AI benefits?',
+        'Is AI integration complex?',
+        'Request personalized pricing',
+        'Explore our trial options',
+        'Join ReserveIQ now!',
+      ].map((question, index) => (
+        <Accordion key={index}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>{question}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Detailed answer to the question goes here...
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+
+      <Box
+        sx={{
+          my: 8,
+          p: 4,
+          backgroundColor: 'background.paper',
+          borderRadius: 2,
+        }}
+      >
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={8}>
+            <Typography variant="h4" gutterBottom>
+              Experience ReserveIQ Today
+            </Typography>
+            <Typography variant="subtitle1" paragraph>
+              Transform your operations with AI.
+            </Typography>
+            <Button variant="contained" color="primary">
+              Get Demo
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <img
+              src="/path-to-ai-image.png"
+              alt="AI Visualization"
+              style={{ maxWidth: '100%', height: 'auto' }}
+            />
+          </Grid>
+        </Grid>
+      </Box>
     </Container>
   );
 };

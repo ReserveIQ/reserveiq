@@ -1,60 +1,42 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+// src/theme.ts
+import { createTheme, Theme } from '@mui/material/styles';
 
-// Create a theme instance
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2', // Blue
+const getTheme = (darkMode: boolean): Theme =>
+  createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+      primary: {
+        main: '#3f51b5',
+      },
+      background: {
+        default: darkMode ? '#121212' : '#f5f5f5',
+        paper: darkMode ? '#1e1e1e' : '#ffffff',
+      },
+      text: {
+        primary: darkMode ? '#ffffff' : '#000000',
+        secondary: darkMode ? '#b0b0b0' : '#555555',
+      },
+      // Add contrast colors for dark mode
+      ...(darkMode && {
+        contrast: {
+          main: '#ff4081', // Pink color for contrast in dark mode
+        },
+      }),
     },
-    secondary: {
-      main: '#dc004e', // Pink
+    typography: {
+      h1: {
+        fontSize: '3rem',
+        fontWeight: 700,
+      },
+      h2: {
+        fontSize: '2.5rem',
+        fontWeight: 600,
+      },
+      h3: {
+        fontSize: '2rem',
+        fontWeight: 600,
+      },
     },
-    error: {
-      main: red.A400,
-    },
-    background: {
-      default: '#f5f5f5',
-    },
-  },
-  typography: {
-    h1: {
-      fontSize: '2.5rem',
-      fontWeight: 500,
-    },
-    h2: {
-      fontSize: '2rem',
-      fontWeight: 500,
-    },
-    h3: {
-      fontSize: '1.75rem',
-      fontWeight: 500,
-    },
-    h4: {
-      fontSize: '1.5rem',
-      fontWeight: 500,
-    },
-    h5: {
-      fontSize: '1.25rem',
-      fontWeight: 500,
-    },
-    h6: {
-      fontSize: '1rem',
-      fontWeight: 500,
-    },
-    body1: {
-      fontSize: '1rem',
-      fontWeight: 400,
-    },
-    body2: {
-      fontSize: '0.875rem',
-      fontWeight: 400,
-    },
-    button: {
-      textTransform: 'none',
-      fontWeight: 600,
-    },
-  },
-});
+  });
 
-export default theme;
+export default getTheme;

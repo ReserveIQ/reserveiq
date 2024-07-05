@@ -1,8 +1,12 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { CssBaseline, Container, Box } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme'; // Import the theme
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import {
+  ThemeProvider as CustomThemeProvider,
+  useTheme,
+} from './context/ThemeContext';
+import getTheme from './theme'; // Update your theme.ts to export a function instead of a theme object
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,9 +17,12 @@ import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import Testimonials from './pages/Testimonials';
 
-const App: React.FC = () => {
+const ThemedApp: React.FC = () => {
+  const { darkMode } = useTheme();
+  const theme = getTheme(darkMode);
+
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -33,7 +40,15 @@ const App: React.FC = () => {
           <Footer />
         </Box>
       </Router>
-    </ThemeProvider>
+    </MuiThemeProvider>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <CustomThemeProvider>
+      <ThemedApp />
+    </CustomThemeProvider>
   );
 };
 

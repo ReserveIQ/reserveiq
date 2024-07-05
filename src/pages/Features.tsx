@@ -15,40 +15,40 @@ import {
   TableRow,
   Box,
   Button,
+  Avatar,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ReservationIcon from '@mui/icons-material/EventAvailable';
-import CustomerIcon from '@mui/icons-material/People';
-import ScheduleIcon from '@mui/icons-material/Schedule';
-import AiIcon from '@mui/icons-material/EmojiObjects';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import SpaIcon from '@mui/icons-material/Spa';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import PeopleIcon from '@mui/icons-material/People';
 import BookingDemo from '../components/BookingDemo';
 
 const FeatureItem: React.FC<{
   icon: React.ReactNode;
   title: string;
   description: string;
-}> = ({ icon, title, description }) => (
-  <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
-    {icon}
-    <Typography variant="h6" gutterBottom>
-      {title}
+  image: string;
+}> = ({ icon, title, description, image }) => (
+  <Paper
+    elevation={3}
+    sx={{ p: 3, height: '100%', bgcolor: 'background.paper' }}
+  >
+    <Box display="flex" alignItems="center" mb={2}>
+      {icon}
+      <Typography variant="h6" ml={1}>
+        {title}
+      </Typography>
+    </Box>
+    <Typography variant="body2" mb={2}>
+      {description}
     </Typography>
-    <Typography>{description}</Typography>
-  </Paper>
-);
-
-const IndustryUseCase: React.FC<{
-  industry: string;
-  description: string;
-  icon: React.ReactNode;
-}> = ({ industry, description, icon }) => (
-  <Paper sx={{ p: 3, mb: 2 }}>
-    {icon}
-    <Typography variant="h6">{industry}</Typography>
-    <Typography>{description}</Typography>
+    <Box
+      component="img"
+      src={image}
+      alt={title}
+      sx={{ width: '100%', height: 'auto', borderRadius: 1 }}
+    />
   </Paper>
 );
 
@@ -56,68 +56,49 @@ const Features: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h2" component="h1" gutterBottom align="center">
-        Features
+        AI-Powered Capabilities of ReserveIQ
       </Typography>
-
-      <Typography variant="body1" sx={{ mb: 4 }}>
-        ReserveIQ offers a comprehensive suite of AI-powered tools designed to
-        streamline operations, enhance customer experiences, and boost revenue
-        for service-based businesses.
+      <Typography variant="subtitle1" align="center" paragraph>
+        Discover how our advanced AI can simplify and streamline your
+        reservation processes.
       </Typography>
 
       <Grid container spacing={4} sx={{ mb: 6 }}>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={6}>
           <FeatureItem
-            icon={<ReservationIcon fontSize="large" color="primary" />}
-            title="Smart Reservations"
-            description="Manage bookings efficiently and optimize your capacity"
+            icon={<CalendarTodayIcon fontSize="large" color="primary" />}
+            title="Automated Scheduling"
+            description="Our AI automates the scheduling process, ensuring efficient and conflict-free bookings."
+            image="/path-to-calendar-image.jpg"
           />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={6}>
           <FeatureItem
-            icon={<CustomerIcon fontSize="large" color="primary" />}
-            title="Customer Profiling"
-            description="Understand your customers better and personalize their experience"
+            icon={<NotificationsActiveIcon fontSize="large" color="primary" />}
+            title="Smart Reminders"
+            description="Never miss an appointment with smart reminders sent to both customers and staff."
+            image="/path-to-smartphone-image.jpg"
           />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={6}>
           <FeatureItem
-            icon={<ScheduleIcon fontSize="large" color="primary" />}
-            title="Employee Scheduling"
-            description="Streamline staff management and improve operational efficiency"
+            icon={<BarChartIcon fontSize="large" color="primary" />}
+            title="Real-Time Analytics"
+            description="Get insights into your business performance with real-time analytics and reporting."
+            image="/path-to-analytics-image.jpg"
           />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={6}>
           <FeatureItem
-            icon={<AiIcon fontSize="large" color="primary" />}
-            title="AI-Powered Insights"
-            description="Leverage advanced machine learning for predictive analytics, personalized recommendations, and data-driven decision making"
+            icon={<PeopleIcon fontSize="large" color="primary" />}
+            title="Customer Management"
+            description="Efficiently manage customer information and preferences to enhance their experience."
+            image="/path-to-customer-management-image.jpg"
           />
         </Grid>
       </Grid>
 
-      <BookingDemo />
-
-      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
-        Industry-Specific Solutions
-      </Typography>
-      <IndustryUseCase
-        industry="Restaurants"
-        description="Optimize table turnover, manage reservations across multiple platforms, and personalize dining experiences."
-        icon={<RestaurantIcon fontSize="large" color="primary" />}
-      />
-      <IndustryUseCase
-        industry="Salons & Spas"
-        description="Efficiently schedule appointments, manage stylist availability, and provide personalized service recommendations."
-        icon={<SpaIcon fontSize="large" color="primary" />}
-      />
-      <IndustryUseCase
-        industry="Fitness Centers"
-        description="Manage class bookings, optimize instructor schedules, and provide personalized fitness plans."
-        icon={<FitnessCenterIcon fontSize="large" color="primary" />}
-      />
-
-      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
+      <Typography variant="h4" gutterBottom>
         Feature Details
       </Typography>
       <Accordion>
@@ -221,6 +202,68 @@ const Features: React.FC = () => {
       </TableContainer>
 
       <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
+        What Our Customers Say
+      </Typography>
+      <Grid container spacing={4} sx={{ mb: 6 }}>
+        <Grid item xs={12} md={4}>
+          <Paper
+            elevation={3}
+            sx={{ p: 3, height: '100%', bgcolor: 'background.paper' }}
+          >
+            <Box display="flex" alignItems="center" mb={2}>
+              <Avatar
+                src="/path-to-sarah-avatar.jpg"
+                alt="Sarah Thompson"
+                sx={{ width: 60, height: 60, mr: 2 }}
+              />
+              <Typography variant="h6">Sarah Thompson</Typography>
+            </Box>
+            <Typography variant="body2">
+              "ReserveIQ has transformed our booking process. It's efficient and
+              easy to use!"
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Paper
+            elevation={3}
+            sx={{ p: 3, height: '100%', bgcolor: 'background.paper' }}
+          >
+            <Box display="flex" alignItems="center" mb={2}>
+              <Avatar
+                src="/path-to-john-avatar.jpg"
+                alt="John Doe"
+                sx={{ width: 60, height: 60, mr: 2 }}
+              />
+              <Typography variant="h6">John Doe</Typography>
+            </Box>
+            <Typography variant="body2">
+              "The AI features save us so much time and reduce errors
+              significantly."
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Paper
+            elevation={3}
+            sx={{ p: 3, height: '100%', bgcolor: 'background.paper' }}
+          >
+            <Box display="flex" alignItems="center" mb={2}>
+              <Avatar
+                src="/path-to-emily-avatar.jpg"
+                alt="Emily Johnson"
+                sx={{ width: 60, height: 60, mr: 2 }}
+              />
+              <Typography variant="h6">Emily Johnson</Typography>
+            </Box>
+            <Typography variant="body2">
+              "Our customers love the automated reminders. It's a game-changer!"
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+
+      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
         Frequently Asked Questions
       </Typography>
       <Accordion>
@@ -274,9 +317,20 @@ const Features: React.FC = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Box sx={{ mt: 6, textAlign: 'center' }}>
-        <Button variant="contained" color="primary" size="large">
-          Start Your Free Trial
+
+      <Box textAlign="center" sx={{ mt: 6, mb: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          Ready to Transform Your Reservation Process?
+        </Typography>
+        <Typography variant="subtitle1" paragraph>
+          Schedule a demo or sign up today to see how ReserveIQ can benefit your
+          business.
+        </Typography>
+        <Button variant="contained" color="primary" sx={{ mr: 2 }}>
+          Schedule a Demo
+        </Button>
+        <Button variant="outlined" color="primary">
+          Sign Up
         </Button>
       </Box>
     </Container>
