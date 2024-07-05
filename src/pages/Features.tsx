@@ -13,11 +13,18 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Box,
+  Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReservationIcon from '@mui/icons-material/EventAvailable';
 import CustomerIcon from '@mui/icons-material/People';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import AiIcon from '@mui/icons-material/EmojiObjects';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import SpaIcon from '@mui/icons-material/Spa';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import BookingDemo from '../components/BookingDemo';
 
 const FeatureItem: React.FC<{
   icon: React.ReactNode;
@@ -33,6 +40,18 @@ const FeatureItem: React.FC<{
   </Paper>
 );
 
+const IndustryUseCase: React.FC<{
+  industry: string;
+  description: string;
+  icon: React.ReactNode;
+}> = ({ industry, description, icon }) => (
+  <Paper sx={{ p: 3, mb: 2 }}>
+    {icon}
+    <Typography variant="h6">{industry}</Typography>
+    <Typography>{description}</Typography>
+  </Paper>
+);
+
 const Features: React.FC = () => {
   return (
     <Container maxWidth="lg">
@@ -40,35 +59,72 @@ const Features: React.FC = () => {
         Features
       </Typography>
 
+      <Typography variant="body1" sx={{ mb: 4 }}>
+        ReserveIQ offers a comprehensive suite of AI-powered tools designed to
+        streamline operations, enhance customer experiences, and boost revenue
+        for service-based businesses.
+      </Typography>
+
       <Grid container spacing={4} sx={{ mb: 6 }}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FeatureItem
             icon={<ReservationIcon fontSize="large" color="primary" />}
             title="Smart Reservations"
             description="Manage bookings efficiently and optimize your capacity"
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FeatureItem
             icon={<CustomerIcon fontSize="large" color="primary" />}
             title="Customer Profiling"
             description="Understand your customers better and personalize their experience"
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FeatureItem
             icon={<ScheduleIcon fontSize="large" color="primary" />}
             title="Employee Scheduling"
             description="Streamline staff management and improve operational efficiency"
           />
         </Grid>
+        <Grid item xs={12} md={3}>
+          <FeatureItem
+            icon={<AiIcon fontSize="large" color="primary" />}
+            title="AI-Powered Insights"
+            description="Leverage advanced machine learning for predictive analytics, personalized recommendations, and data-driven decision making"
+          />
+        </Grid>
       </Grid>
 
-      <Typography variant="h4" gutterBottom>
+      <BookingDemo />
+
+      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
+        Industry-Specific Solutions
+      </Typography>
+      <IndustryUseCase
+        industry="Restaurants"
+        description="Optimize table turnover, manage reservations across multiple platforms, and personalize dining experiences."
+        icon={<RestaurantIcon fontSize="large" color="primary" />}
+      />
+      <IndustryUseCase
+        industry="Salons & Spas"
+        description="Efficiently schedule appointments, manage stylist availability, and provide personalized service recommendations."
+        icon={<SpaIcon fontSize="large" color="primary" />}
+      />
+      <IndustryUseCase
+        industry="Fitness Centers"
+        description="Manage class bookings, optimize instructor schedules, and provide personalized fitness plans."
+        icon={<FitnessCenterIcon fontSize="large" color="primary" />}
+      />
+
+      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
         Feature Details
       </Typography>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand Reservation Management details"
+        >
           <Typography variant="h6">Reservation Management</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -80,7 +136,10 @@ const Features: React.FC = () => {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand Customer Profiling details"
+        >
           <Typography variant="h6">Customer Profiling</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -92,7 +151,10 @@ const Features: React.FC = () => {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand Employee Scheduling details"
+        >
           <Typography variant="h6">Employee Scheduling</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -142,6 +204,18 @@ const Features: React.FC = () => {
               <TableCell>-</TableCell>
               <TableCell>-</TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell>Predictive Analytics</TableCell>
+              <TableCell>✓</TableCell>
+              <TableCell>-</TableCell>
+              <TableCell>-</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Real-time Optimization</TableCell>
+              <TableCell>✓</TableCell>
+              <TableCell>-</TableCell>
+              <TableCell>✓</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -150,7 +224,10 @@ const Features: React.FC = () => {
         Frequently Asked Questions
       </Typography>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand question about business types"
+        >
           <Typography>
             Is ReserveIQ suitable for all types of businesses?
           </Typography>
@@ -164,7 +241,10 @@ const Features: React.FC = () => {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand question about integrations"
+        >
           <Typography>
             Can I integrate ReserveIQ with my existing systems?
           </Typography>
@@ -177,6 +257,28 @@ const Features: React.FC = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand question about data privacy"
+        >
+          <Typography>
+            How does ReserveIQ ensure data privacy and security?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            ReserveIQ employs state-of-the-art encryption and follows strict
+            data protection protocols. We are GDPR compliant and never share
+            your data with third parties without explicit consent.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Box sx={{ mt: 6, textAlign: 'center' }}>
+        <Button variant="contained" color="primary" size="large">
+          Start Your Free Trial
+        </Button>
+      </Box>
     </Container>
   );
 };
