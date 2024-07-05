@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/reserveiq-website/static/js/main.c8fb48d4.js",
+    "index.html": "/reserveiq-website/index.html",
+    "main.c8fb48d4.js.map": "/reserveiq-website/static/js/main.c8fb48d4.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c8fb48d4.js"
+  ]
+}
